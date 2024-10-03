@@ -30,7 +30,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   max-width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  object-fit: cover;
 }
 
 h1 {
