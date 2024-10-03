@@ -1,0 +1,9 @@
+.error {
+  padding-top: 32px;
+  font-size: 20px;
+  color: rgb(250, 14, 14);
+  display: flex;
+  justify-content: center;
+  margin-left: 200px;
+  font-size: 32px;
+}

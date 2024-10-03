@@ -1,0 +1,11 @@
+.fon {
+    position: fixed;
+    background-image: url(./images/retro-film.jpg);
+    background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
+  left: 0;
+  top: 0;
+}

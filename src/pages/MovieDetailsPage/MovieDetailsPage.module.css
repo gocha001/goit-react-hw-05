@@ -1,0 +1,33 @@
+.img {
+    width: 500px;
+    height: 900px;
+}
+
+.movie {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.text {
+    max-width: 1440px;
+    color: black;
+    font-weight: bold;
+}
+
+.links {
+    display: flex;
+    gap: 40px;
+}
+
+.link {
+    color: blue;
+    font-weight: bold;
+    &:hover {
+        color: black;
+    }
+}
+
+.active {
+    color: black;
+}

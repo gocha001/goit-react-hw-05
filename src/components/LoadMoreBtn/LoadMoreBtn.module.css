@@ -1,0 +1,9 @@
+.load {
+     display: flex;
+  justify-content: center;
+}
+
+.load button {
+  background-color: aqua;
+ 
+}

@@ -1,0 +1,17 @@
+
+
+.list {
+list-style-type: none;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+gap: 16px;
+}
+
+.img {
+    width: 200px;
+}
+
+.text {
+    width: 200px;
+}
