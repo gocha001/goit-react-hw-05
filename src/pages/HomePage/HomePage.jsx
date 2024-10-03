@@ -5,6 +5,7 @@ import css from "./HomePage.module.css";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error.jsx";
 import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn.jsx";
+import ScrollUp from "../../components/ScrollUp/ScrollUp.jsx";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -14,6 +15,15 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [scrTo, setSrcTo] = useState(700);
+  const [scr, setScr] = useState(0);
+
+  window.onscroll = () => {
+    if (window.scrollY > 400) {
+      setScr(1);
+    } else {
+      setScr(0);
+    }
+  };
 
   useEffect(() => {
     const getMovies = async () => {
@@ -41,27 +51,25 @@ const HomePage = () => {
   };
 
   const scrollWindow = () => {
-   setTimeout(() => {
-   window.scrollBy({
-     top: scrTo,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      window.scrollBy({
+        top: scrTo,
+        behavior: "smooth",
+      });
     }, 500);
- };
+  };
 
   return (
     <div>
-      <h2 className={css.text}> Trending movies on TMDB</h2>
-      {!!movies.length && <MovieList
-        movies={movies}
-        result={result}
-        pages={pages}
-        page={page}
-      />}
+      <h2 className={css.text}> Trending movies on TMDB today</h2>
+      {!!movies.length && (
+        <MovieList movies={movies} result={result} pages={pages} page={page} />
+      )}
       {!!movies.length && page < pages && (
-        <LoadMoreBtn handleLoadMore={handleLoadMore}/>
+        <LoadMoreBtn handleLoadMore={handleLoadMore} />
       )}
       {isLoading && <Loader />}
+      {!!scr && <ScrollUp />}
       {isError && <Error />}
     </div>
   );

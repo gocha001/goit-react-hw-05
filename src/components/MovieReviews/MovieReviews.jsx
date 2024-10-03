@@ -6,7 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import Error from "../Error/Error.jsx";
 
 const MovieReviews = () => {
-  const movieId = useParams();
+  const { movieId } = useParams();
 
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

@@ -10,21 +10,29 @@ import { searchMovieById } from "../../services/api.js";
 import css from "./MovieDetailsPage.module.css";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error.jsx";
+import ScrollUp from "../../components/ScrollUp/ScrollUp.jsx";
 
 const baseUrl = "https://image.tmdb.org/t/p/w500/";
 const defaultImg = "//dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poste";
 
 const MovieDetailsPage = () => {
-  const movieId = useParams();
-
+  const { movieId } = useParams();
   const location = useLocation();
   const goBackRef = useRef(location.state ?? "/movies");
-
   const [movie, setMovie] = useState([]);
   const [genres, setGenres] = useState([]);
   const [country, setCountry] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [scr, setScr] = useState(0);
+
+  window.onscroll = () => {
+    if (window.scrollY > 400) {
+      setScr(1);
+    } else {
+      setScr(0);
+    }
+  };
 
   useEffect(() => {
     const getMovie = async () => {
@@ -43,10 +51,6 @@ const MovieDetailsPage = () => {
     };
     getMovie();
   }, [movieId]);
-
-  // if (!movie) {
-  //   return <h2>Loading...</h2>
-  // }
 
   return (
     <div className={css.movie}>
@@ -87,6 +91,7 @@ const MovieDetailsPage = () => {
             Go back
           </Link>
         </div>
+        {!!scr && <ScrollUp />}
         {isError && <Error />}
         <Suspense fallback={<Loader />}>
           <Outlet />

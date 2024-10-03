@@ -13,11 +13,14 @@
     max-width: 1440px;
     color: black;
     font-weight: bold;
+    font-size: 24px;
 }
 
 .links {
     display: flex;
     gap: 40px;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .link {
@@ -25,9 +28,11 @@
     font-weight: bold;
     &:hover {
         color: black;
+         font-weight: bold;
     }
 }
 
 .active {
     color: black;
+     font-weight: bold;
 }

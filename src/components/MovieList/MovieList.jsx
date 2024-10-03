@@ -5,7 +5,6 @@ const MovieList = ({ movies, result, pages, page }) => {
   
   const location = useLocation();
 
-
   return (
     <div className={css.container} >
       <ul className={css.item} >

@@ -1,7 +1,7 @@
 .fon {
-    position: fixed;
-    background-image: url(./images/retro-film.jpg);
-    background-repeat: no-repeat;
+  position: fixed;
+  background-image: url(./images/retro-film.jpg);
+  background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   height: 100%;

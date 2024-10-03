@@ -8,18 +8,27 @@ import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error.jsx";
 import * as Yup from "yup";
 import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn.jsx";
+import ScrollUp from "../../components/ScrollUp/ScrollUp.jsx";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [result, setResult] = useState(null);
   const [pages, setPages] = useState(null);
   const [page, setPage] = useState(1);
-  // const [film, setFilm] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const film = searchParams.get("query") ?? "";
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [scrTo, setSrcTo] = useState(700);
+  const [scr, setScr] = useState(0);
+
+  window.onscroll = () => {
+    if (window.scrollY > 400) {
+      setScr(1);
+    } else {
+      setScr(0);
+    }
+  };
 
   useEffect(() => {
     const getMovies = async () => {
@@ -45,8 +54,6 @@ const MoviesPage = () => {
   };
 
   const handleSubmit = (values) => {
-    console.log(values.query);
-    // setFilm(values.query);
     searchQuery(values.query);
     if (!values.query) {
       return setSearchParams({});
@@ -72,10 +79,10 @@ const MoviesPage = () => {
   const handleLoadMore = () => {
     setPage((prev) => prev + 1);
     setSrcTo((prev) => prev + 10);
-    window.onload();
+    scrollWindow();
   };
 
-  window.onload = () => {
+  const scrollWindow = () => {
     setTimeout(() => {
       window.scrollBy({
         top: scrTo,
@@ -94,13 +101,12 @@ const MoviesPage = () => {
         >
           <Form className={css.form}>
             <label className={css.label}>
-              <Field className={css.field} name="query" />
-              <ErrorMessage
+              <Field
+                className={css.field}
                 name="query"
-                component="p"
-                // style={{ color: "red", fontWeight: 700, fontSize: "40px" }}
-                className={css.error}
+                placeholder="Enter the name of the movie"
               />
+              <ErrorMessage name="query" component="p" className={css.error} />
             </label>
             <button className={css.btn} type="submit">
               Search
@@ -115,6 +121,7 @@ const MoviesPage = () => {
         <LoadMoreBtn handleLoadMore={handleLoadMore} />
       )}
       {isLoading && <Loader />}
+      {!!scr && <ScrollUp />}
       {isError && <Error />}
     </div>
   );

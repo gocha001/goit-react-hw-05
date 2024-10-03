@@ -10,8 +10,7 @@ const defaultImg =
   "https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster";
 
 const MovieCast = () => {
-  const movieId = useParams();
-
+  const { movieId } = useParams();
   const [casts, setCasts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -34,7 +33,7 @@ const MovieCast = () => {
 
   return (
     <div>
-      {!isLoading ? (
+      {casts.length ? (
         <ul className={css.list}>
           {casts.map((cast) => (
             <li key={cast.cast_id}>
